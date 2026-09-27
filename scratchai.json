@@ -1,0 +1,83 @@
+{
+  "name": "AI Agent",
+  "id": "aiAgent",
+  "version": "1.0.0",
+  "description": "AI agent extension for TurboWarp with OpenAI and Anthropic compatibility.",
+  "settings": {
+    "apiKey": "",
+    "model": "gpt-5.6",
+    "compatibility": "openai",
+    "endpoint": ""
+  },
+  "blocks": [
+    {
+      "opcode": "setApiKey",
+      "type": "command",
+      "text": "set API key to [KEY]",
+      "arguments": {
+        "KEY": {
+          "type": "string",
+          "defaultValue": ""
+        }
+      }
+    },
+    {
+      "opcode": "askAI",
+      "type": "command",
+      "text": "ask AI [QUESTION]",
+      "arguments": {
+        "QUESTION": {
+          "type": "string",
+          "defaultValue": "Hello!"
+        }
+      }
+    },
+    {
+      "opcode": "aiResponse",
+      "type": "reporter",
+      "text": "AI response"
+    },
+    {
+      "opcode": "testApi",
+      "type": "command",
+      "text": "test API"
+    },
+    {
+      "opcode": "setModel",
+      "type": "command",
+      "text": "set model to [MODEL]",
+      "arguments": {
+        "MODEL": {
+          "type": "string",
+          "defaultValue": "gpt-5.6"
+        }
+      }
+    },
+    {
+      "opcode": "setCompatibility",
+      "type": "command",
+      "text": "set compatibility to [TYPE]",
+      "arguments": {
+        "TYPE": {
+          "type": "menu",
+          "menu": "compatibilityMenu"
+        }
+      }
+    }
+  ],
+  "menus": {
+    "compatibilityMenu": [
+      "OpenAI",
+      "Anthropic"
+    ]
+  },
+  "behavior": {
+    "askAI": {
+      "storeResponseIn": "aiResponse",
+      "async": true
+    },
+    "testApi": {
+      "returns": "success_or_error"
+    }
+  }
+}
